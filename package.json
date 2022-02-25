@@ -1,0 +1,24 @@
+{
+  "name": "humidity-tracker",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@ssh.dflyboy.me:daniel/humidity-tracker.git"
+  },
+  "author": "daniel@dpulm.online",
+  "license": "MIT",
+  "dependencies": {
+    "i2c-bus": "^5.2.2",
+    "winston": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/i2c-bus": "^5.1.0",
+    "@types/winston": "^2.4.4",
+    "typescript": "^4.5.5"
+  }
+}

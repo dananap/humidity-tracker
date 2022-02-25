@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "noImplicitAny": false,
+        "module": "CommonJS",
+        "target": "ES2020",
+        // "allowJs": true,
+        "moduleResolution": "Node",
+        "sourceMap": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        // "checkJs": true
+        "incremental": true
+    }
+}
