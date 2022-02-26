@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "tsc && cmake . && make",
+    "start": "DIR=$(pwd) (crontab -l ; echo '*/30 * * * bash cd $DIR && node index.js') | crontab -"
   },
   "repository": {
     "type": "git",

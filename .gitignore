@@ -194,3 +194,6 @@ _deps
 ### CMake Patch ###
 # External projects
 *-prefix/
+sensor
+index.js
+index.js.map
