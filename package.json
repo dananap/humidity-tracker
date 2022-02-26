@@ -13,17 +13,13 @@
   "author": "daniel@dpulm.online",
   "license": "MIT",
   "dependencies": {
-    "@upstash/redis": "^0.2.1",
     "dotenv": "^16.0.0",
     "i2c-bus": "^5.2.2",
-    "ioredis": "^4.28.5",
-    "winston": "^3.6.0"
+    "ioredis": "^4.28.5"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
-    "@types/i2c-bus": "^5.1.0",
     "@types/ioredis": "^4.28.8",
-    "@types/winston": "^2.4.4",
     "typescript": "^4.5.5"
   }
 }
