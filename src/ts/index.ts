@@ -16,20 +16,24 @@ class Reader {
 class Transmitter {
     private redis: IORedis.Redis;
     constructor() {
-        this.redis = new IORedis(process.env['REDIS_URL']);
+        this.redis = new IORedis(process.env['REDIS_URI']);
     }
 
     async submitData(temperature: number, humidity: number) {
-        await this.redis.xadd(process.env['ROOM'], '*', 'temparature', temperature, 'humidity', humidity);
+        await this.redis.rpush(process.env['ROOM'], JSON.stringify({
+            temperature,
+            humidity,
+            time: Date.now()
+        }));
     }
 }
 
 
-async function main() {
+(async function main() {
     const transmitter = new Transmitter();
 
     const data = await Reader.readData();
     await transmitter.submitData(data.temperature, data.humidity);
-}
 
-main();
+    process.exit();
+})();
