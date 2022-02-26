@@ -11,6 +11,7 @@
         "resolveJsonModule": true,
         // "checkJs": true
         "incremental": true,
+        "outDir": "./"
     },
     "files": [
         "src/ts/index.ts"
