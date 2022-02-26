@@ -23,7 +23,6 @@ class Transmitter {
     }
 
     async submitData(temperature: number, humidity: number) {
-        this.redis.connect();
         await this.redis.xadd(process.env['ROOM'], '*', 'temparature', temperature, 'humidity', humidity);
     }
 }
