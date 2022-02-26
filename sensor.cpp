@@ -63,14 +63,15 @@ int main(int argc, char *argv[])
             return 2;
         }
 
-        const int humidity = buffer[3] | buffer[2] << 8;
-        const int raw_temperature = buffer[5] | buffer[4] << 8;
-        const float temperature = raw_temperature / 10;
+        const float humidity = (buffer[3] | buffer[2] << 8) / 10;
+        const float temperature = (buffer[5] | buffer[4] << 8) / 10;
 
         // for (auto &el : buffer)
         //     std::cout << std::setfill('0') << std::setw(2) << std::hex << (0xff & (unsigned int)el);
 
-        cout << "{\"temperature\":" << temperature << ",\"humidity\":" << humidity << "}";
+        cout
+            << "{\"temperature\":" << std::setprecision(2) << temperature
+            << ",\"humidity\":" << std::setprecision(2) << humidity << "}";
     }
 
     return 0;
