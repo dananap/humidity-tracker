@@ -44,9 +44,9 @@ class Transmitter {
             value: data.humidity,
             time: data.time
         });
-        await this.db.collection('humidity').insertOne({
+        await this.db.collection('temperature').insertOne({
             room: process.env['ROOM'],
-            value: data.humidity,
+            value: data.temperature,
             time: data.time
         });
         await this.client.close();
