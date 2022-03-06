@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
   std::cout << "{\"temperature\":" << std::setprecision(2) << std::get<0>(data)
             << ",\"humidity\":" << std::setprecision(2) << std::get<1>(data)
             << ",\"time\":"
-            << std::chrono::duration_cast<std::chrono::seconds>(
+            << std::chrono::duration_cast<std::chrono::milliseconds>(
                    ts.time_since_epoch())
                    .count()
             << "}";
