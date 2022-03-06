@@ -39,13 +39,15 @@ class Transmitter {
 
     async submitData(data: Data) {
         await this.client.connect();
-        await this.db.collection('temperature').insertOne({
+        await this.db.collection('humidity').insertOne({
             room: process.env['ROOM'],
-            ... _.pick(data, ['time', 'humidity'])
+            value: data.humidity,
+            time: data.time
         });
-        await this.db.collection('temperature').insertOne({
+        await this.db.collection('humidity').insertOne({
             room: process.env['ROOM'],
-            ... _.pick(data, ['temperature', 'time'])
+            value: data.humidity,
+            time: data.time
         });
         await this.client.close();
     }
