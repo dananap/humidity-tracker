@@ -15,7 +15,7 @@ class Data {
         _.assign(
             this,
             _.create(Data.prototype, JSON.parse(input)),
-            {time: new Date(this.time)}
+            {time: Date.now()}
         );
     }
 }
