@@ -13,6 +13,9 @@ endif()
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
+set(CMAKE_PREFIX_PATH lib)
+set(REDIS_PLUS_PLUS_HEADER lib/redis-plus-plus/src)
+
 # add the executable
 add_executable(sensor src/sensor.cpp)
 
