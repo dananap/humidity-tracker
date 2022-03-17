@@ -11,9 +11,9 @@
         "resolveJsonModule": true,
         // "checkJs": true
         "incremental": true,
-        "outDir": "./"
+        "outDir": "./bin"
     },
-    "files": [
-        "src/ts/index.ts"
-    ]
+    "include": [
+        "src/ts/"
+, "src/ts/logger.ts"    ]
 }

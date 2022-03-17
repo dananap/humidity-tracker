@@ -15,3 +15,10 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 # add the executable
 add_executable(sensor src/sensor.cpp)
+
+install(TARGETS sensor
+        CONFIGURATIONS Debug
+        RUNTIME DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/bin/debug)
+install(TARGETS sensor
+        CONFIGURATIONS Release
+        RUNTIME DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/bin)

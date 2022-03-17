@@ -1,0 +1,9 @@
+{
+    mongo: {
+        uri: 'mongodb+srv://logger:9GDQUNR8jixjIEhz@homelog.ljybn.mongodb.net/home?retryWrites=true&w=majority',
+        db: 'home'
+    },
+    redis: {
+        uri: 'rediss://:4c6c0b26b48e48d9a84a776102225dd7@eu1-verified-newt-35894.upstash.io:35894'
+    }
+}
