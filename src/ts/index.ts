@@ -8,6 +8,7 @@ import config from 'config';
 import Redis from 'ioredis';
 import Instance from './instance';
 import logger from './logger';
+import axios, { AxiosInstance } from 'axios';
 const execFile = promisify(require('child_process').execFile);
 
 const instance = new Instance();
@@ -34,13 +35,17 @@ class Reader {
 }
 
 class Transmitter {
-    db: Db;
-    client: MongoClient;
-    redis: Redis.Redis;
+    client: AxiosInstance;
     constructor() {
-        this.client = new MongoClient(config.get('mongo.uri'), { serverApi: ServerApiVersion.v1 });
-        this.db = this.client.db(config.get('mongo.db'));
-        this.redis = new Redis(config.get('redis.uri'));
+        this.client = axios.create({
+            url: 'http://10.8.0.4:8769/api/add',
+            method: 'POST',
+            responseType: 'json',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+
+        });
     }
 
     async submitData(data: Data) {

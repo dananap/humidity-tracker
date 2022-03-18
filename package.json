@@ -14,7 +14,9 @@
   "author": "daniel@dpulm.online",
   "license": "MIT",
   "dependencies": {
+    "@types/axios": "^0.14.0",
     "@types/winston": "^2.4.4",
+    "axios": "^0.26.1",
     "config": "^3.3.7",
     "dotenv": "^16.0.0",
     "i2c-bus": "^5.2.2",
