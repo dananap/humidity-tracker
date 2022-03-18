@@ -9,7 +9,7 @@ import Redis from 'ioredis';
 import Instance from './instance';
 import logger from './logger';
 import axios, { AxiosInstance } from 'axios';
-import { generate } from 'hmac-auth-express/dist';
+import { generate } from 'hmac-auth-express';
 const execFile = promisify(require('child_process').execFile);
 
 const instance = new Instance();
@@ -39,7 +39,7 @@ class Transmitter {
     client: AxiosInstance;
     constructor() {
         this.client = axios.create({
-            url: 'http://10.8.0.4:8769/api/add',
+            baseURL: 'http://10.8.0.6:8769',
             method: 'POST',
             responseType: 'json',
             headers: {
@@ -60,7 +60,7 @@ class Transmitter {
 
         const hmac = `HMAC ${time}:${digest}`;
 
-        await this.client({
+        await this.client('/api/add', {
             headers: {
                 'Authorization': hmac
             },
@@ -76,8 +76,6 @@ class Transmitter {
 
     const transmitter = new Transmitter();
 
-    await transmitter.client.connect();
-    logger.info('mongo connected');
     // const instances = transmitter.db.collection('instances');
     // instances.insertOne({...instance, updatedAt: new Date()});
 
