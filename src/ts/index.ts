@@ -9,6 +9,7 @@ import Redis from 'ioredis';
 import Instance from './instance';
 import logger from './logger';
 import axios, { AxiosInstance } from 'axios';
+import { generate } from 'hmac-auth-express/dist';
 const execFile = promisify(require('child_process').execFile);
 
 const instance = new Instance();
@@ -22,7 +23,7 @@ class Data {
         _.assign(
             this,
             _.create(Data.prototype, JSON.parse(input)),
-            {time: new Date()}
+            { time: new Date() }
         );
     }
 }
@@ -49,14 +50,23 @@ class Transmitter {
     }
 
     async submitData(data: Data) {
-        await this.db.collection('sensors').insertOne({
-            instance: _.pick(instance, 'id', 'room'),
-            ...data,
-            device_temp: await instance.getTemp()
+        const payload = {
+            instance,
+            data: _.assign(data, { device_temp: await instance.getTemp() })
+        };
+
+        const time = Date.now().toString();
+        const digest = generate(config.get('web.hmac.secret'), 'sha256', time, 'POST', '/api/add', payload).digest('hex'); // 76251c6323fbf6355f23816a4c2e12edfd10672517104763ab1b10f078277f86
+
+        const hmac = `HMAC ${time}:${digest}`;
+
+        await this.client({
+            headers: {
+                'Authorization': hmac
+            },
+            data: payload
         });
-        await this.db.collection('instances').updateOne({ id: instance.id}, {$set: _.pick(instance, ['room', 'uptime', 'hostname'])}, {upsert: true});
-        await this.redis.sadd('instances', instance.id);
-        await this.redis.hmset('instace:' + instance.id, {..._.pick(instance, ['room', 'uptime', 'hostname']), temp: await instance.getTemp()});
+
     }
 }
 
@@ -74,10 +84,10 @@ class Transmitter {
     async function sendData() {
         const data = await Reader.readData();
         await transmitter.submitData(data);
-        logger.info('submitted', {data, instance})
+        logger.info('submitted', { data, instance })
     }
 
-    setInterval(sendData, 60*1000);
+    setInterval(sendData, 60 * 1000);
     sendData();
 
 })();
