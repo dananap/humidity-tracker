@@ -36,15 +36,7 @@ class Reader {
 class Transmitter {
     client: AxiosInstance;
     constructor() {
-        this.client = axios.create({
-            baseURL: 'http://192.168.178.21:8769',
-            method: 'POST',
-            responseType: 'json',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-
-        });
+        this.client = axios.create(config.get(api));
     }
 
     async submitData(data: Data) {
