@@ -36,7 +36,7 @@ class Reader {
 class Transmitter {
     client: AxiosInstance;
     constructor() {
-        this.client = axios.create(config.get(api));
+        this.client = axios.create(config.get('api'));
     }
 
     async submitData(data: Data) {
