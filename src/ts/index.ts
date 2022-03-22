@@ -58,12 +58,19 @@ class Transmitter {
 
         const hmac = `HMAC ${time}:${digest}`;
 
-        await this.client('/api/add', {
+        logger.verbose('prepared submit', {
+            payload,
+            hmac
+        });
+
+        const res = await this.client('/api/add', {
             headers: {
                 'Authorization': hmac
             },
             data: payload
         });
+
+        logger.info('finished submit', res.data);
 
     }
 }
@@ -77,10 +84,10 @@ class Transmitter {
     async function sendData() {
         const data = await Reader.readData();
         await transmitter.submitData(data);
-        logger.info('submitted', { data, instance })
+        // logger.info('submitted', { data, instance })
     }
 
-    setInterval(sendData, 10 * 1000);
+    setInterval(sendData, 20 * 1000);
     sendData();
 
 })();
