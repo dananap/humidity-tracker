@@ -2,10 +2,8 @@ import 'dotenv/config';
 
 import { promisify } from 'util';
 import { join } from 'path';
-import { Db, MongoClient, ServerApiVersion } from 'mongodb';
 import _ from 'lodash';
 import config from 'config';
-import Redis from 'ioredis';
 import Instance from './instance';
 import logger from './logger';
 import axios, { AxiosInstance } from 'axios';
@@ -39,7 +37,7 @@ class Transmitter {
     client: AxiosInstance;
     constructor() {
         this.client = axios.create({
-            baseURL: 'http://10.8.0.6:8769',
+            url: 'http://192.168.178.21:8769/api/add',
             method: 'POST',
             responseType: 'json',
             headers: {
@@ -76,16 +74,13 @@ class Transmitter {
 
     const transmitter = new Transmitter();
 
-    // const instances = transmitter.db.collection('instances');
-    // instances.insertOne({...instance, updatedAt: new Date()});
-
     async function sendData() {
         const data = await Reader.readData();
         await transmitter.submitData(data);
         logger.info('submitted', { data, instance })
     }
 
-    setInterval(sendData, 60 * 1000);
+    setInterval(sendData, 10 * 1000);
     sendData();
 
 })();

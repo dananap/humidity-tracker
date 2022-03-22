@@ -17,6 +17,10 @@ export default class Instance {
         return os.uptime();
     }
 
+    get load() {
+        return os.loadavg();
+    }
+
     async getTemp() {
         const out =await fs.promises.readFile('/sys/class/thermal/thermal_zone0/temp', 'ascii');
         return (<number><unknown>out)/1000;
