@@ -37,7 +37,7 @@ class Transmitter {
     client: AxiosInstance;
     constructor() {
         this.client = axios.create({
-            url: 'http://192.168.178.21:8769/api/add',
+            baseURL: 'http://192.168.178.21:8769',
             method: 'POST',
             responseType: 'json',
             headers: {
