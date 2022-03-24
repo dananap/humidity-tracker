@@ -18,7 +18,7 @@ export default class Instance {
     }
 
     get load() {
-        return os.loadavg();
+        return os.loadavg()[0];
     }
 
     async getTemp() {
