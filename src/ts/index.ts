@@ -42,7 +42,7 @@ class Transmitter {
     async submitData(data: Data) {
         const payload = {
             instance,
-            data: _.assign(data, { device_temp: await instance.getTemp() })
+            data: _.assign(data, { device_temp: await instance.getTemp(), load: instance.load })
         };
 
         const time = Date.now().toString();
