@@ -1,19 +1,11 @@
 {
-    mongo: {
-        uri: 'mongodb+srv://logger:9GDQUNR8jixjIEhz@homelog.ljybn.mongodb.net/home?retryWrites=true&w=majority',
-        db: 'home'
-    },
-    redis: {
-        uri: 'rediss://:4c6c0b26b48e48d9a84a776102225dd7@eu1-verified-newt-35894.upstash.io:35894'
-    },
     web: {
-        port: 8769,
         hmac: {
             secret: '132916606c7d75b13f5e0ce32f07a2d8'
         }
     },
     api: {
-        baseURL: 'http://192.168.178.43:8769',
+        baseURL: 'https://bot.dflyboy.me',
         method: 'POST',
         responseType: 'json',
         headers: {
