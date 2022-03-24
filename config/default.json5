@@ -13,7 +13,7 @@
         }
     },
     api: {
-        baseURL: 'http://192.168.178.43:8769',
+        baseURL: 'https://bot.dflyboy.me',
         method: 'POST',
         responseType: 'json',
         headers: {
