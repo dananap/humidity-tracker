@@ -195,8 +195,7 @@ _deps
 # External projects
 *-prefix/
 sensor
-index.js
-index.js.map
 
 build/
-bin/
+
+core
