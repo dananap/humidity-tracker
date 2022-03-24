@@ -76,10 +76,9 @@ class Transmitter {
     async function sendData() {
         const data = await Reader.readData();
         await transmitter.submitData(data);
-        // logger.info('submitted', { data, instance })
+        setTimeout(sendData, 10 * 1000);
     }
 
-    setInterval(sendData, 20 * 1000);
     sendData();
 
 })();
