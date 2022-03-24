@@ -2,14 +2,12 @@ import 'dotenv/config';
 
 import { promisify } from 'util';
 import { join } from 'path';
-import { Db, MongoClient, ServerApiVersion } from 'mongodb';
 import _ from 'lodash';
 import config from 'config';
-import Redis from 'ioredis';
 import Instance from './instance';
 import logger from './logger';
 import axios, { AxiosInstance } from 'axios';
-import { generate } from 'hmac-auth-express/dist';
+import { generate } from 'hmac-auth-express';
 const execFile = promisify(require('child_process').execFile);
 
 const instance = new Instance();
@@ -38,15 +36,7 @@ class Reader {
 class Transmitter {
     client: AxiosInstance;
     constructor() {
-        this.client = axios.create({
-            url: 'http://10.8.0.4:8769/api/add',
-            method: 'POST',
-            responseType: 'json',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-
-        });
+        this.client = axios.create(config.get('api'));
     }
 
     async submitData(data: Data) {
@@ -60,12 +50,19 @@ class Transmitter {
 
         const hmac = `HMAC ${time}:${digest}`;
 
-        await this.client({
+        logger.verbose('prepared submit', {
+            payload,
+            hmac
+        });
+
+        const res = await this.client('/api/add', {
             headers: {
                 'Authorization': hmac
             },
             data: payload
         });
+
+        logger.info('finished submit', res.data);
 
     }
 }
@@ -76,18 +73,13 @@ class Transmitter {
 
     const transmitter = new Transmitter();
 
-    await transmitter.client.connect();
-    logger.info('mongo connected');
-    // const instances = transmitter.db.collection('instances');
-    // instances.insertOne({...instance, updatedAt: new Date()});
-
     async function sendData() {
         const data = await Reader.readData();
         await transmitter.submitData(data);
-        logger.info('submitted', { data, instance })
+        // logger.info('submitted', { data, instance })
     }
 
-    setInterval(sendData, 60 * 1000);
+    setInterval(sendData, 20 * 1000);
     sendData();
 
 })();
