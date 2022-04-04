@@ -6,11 +6,13 @@ export default class Instance {
     id: string;
     room: string;
     hostname: string;
+    type: string;
 
     constructor() {
         this.id = fs.readFileSync('/etc/machine-id', 'utf8').trim();
         this.room = process.env['ROOM'];
         this.hostname = os.hostname();
+        this.type = 'sensor';
     }
 
     get uptime() {
