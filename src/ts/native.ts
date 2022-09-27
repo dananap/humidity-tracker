@@ -1,13 +1,40 @@
 import i2c from 'i2c';
 
 const wire = new i2c(0x5c, { device: '/dev/i2c-1', });
-wire.write([0x03, 0x00, 0x05], function(err: Error) {
-    
-});
+const buf = Buffer.alloc(4, 0x00);
+  // wire.writeByte(0x00, function(err: Error) {
+  //   console.error(err);
+  // });
 
-wire.read(8, function(err: Error, res: Buffer) {
-    console.dir(res);
+
+
+  // wire.on('data', function(data) {
+  //   // result for continuous stream contains data buffer, address, length, timestamp
+  //   console.dir(data);
+  
+  // });
+  buf[0] = 0x03;
+  buf[2] = 0x04;
+  wire.write( buf.slice(0,3), function(err: Error) {
+    console.error(err);
   });
+
+  setTimeout(() => {
+    wire.readBytes(0x00, 8, function(err: Error, res: Buffer) {
+      console.dir(res);
+      console.error(err);
+
+      res.readUIntLE(2, 2)
+      const data = new Uint8Array(8)
+      res.copy(data);
+
+      const results = new Float64Array(2);
+      results[0] = (data[3] | dara[2] << 8) / 10;
+      results[1] = (data[5] | dara[4] << 8) / 10;
+
+    });
+  }, 800);
+
    
 
 // function I2C_DHT12(log, config) {

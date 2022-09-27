@@ -10,10 +10,12 @@ class Instance {
     id;
     room;
     hostname;
+    type;
     constructor() {
         this.id = fs_1.default.readFileSync('/etc/machine-id', 'utf8').trim();
         this.room = process.env['ROOM'];
         this.hostname = os_1.default.hostname();
+        this.type = 'sensor';
     }
     get uptime() {
         return os_1.default.uptime();

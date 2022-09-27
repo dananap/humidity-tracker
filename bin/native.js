@@ -5,10 +5,36 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const i2c_1 = __importDefault(require("i2c"));
 const wire = new i2c_1.default(0x5c, { device: '/dev/i2c-1', });
-wire.write([0x03, 0x00, 0x05], function (err) { });
-wire.read(8, function (err, res) {
-    console.dir(res);
+const buf = Buffer.alloc(4, 0x00);
+wire.writeByte(0x00, function(err) {
+  console.error(err);
 });
+// wire.on('data', function(data) {
+//   // result for continuous stream contains data buffer, address, length, timestamp
+//   console.dir(data);
+// });
+buf[0] = 0x03;
+buf[2] = 0x04;
+wire.write(buf.slice(0, 3), function (err) {
+    console.error(err);
+});
+setTimeout(() => {
+    wire.readBytes(0x00, 6, function (err, res) {
+        console.dir(res);
+        console.error(err);
+        res.readUIntLE(2, 2);
+        const data = new Uint8Array(8);
+        res.copy(data);
+        const results = new ArrayBuffer(16);
+        const abv = new DataView(results, 0, 16)
+        abv.setFloat64(0, (data[3] | data[2] << 8) / 10);
+        abv.setFloat64(8, (data[5] | data[4] << 8) / 10);
+        console.dir(abv, abv.getFloat64(0), abv.getFloat64(8));
+
+        results[0] = (data[3] | data[2] << 8) / 10;
+        results[1] = (data[5] | data[4] << 8) / 10;
+    });
+}, 600);
 // function I2C_DHT12(log, config) {
 //     this.log = log;
 //     this.name = config.name;
