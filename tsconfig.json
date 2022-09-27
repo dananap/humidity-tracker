@@ -2,7 +2,7 @@
     "compilerOptions": {
         // "noImplicitAny": false,
         "module": "CommonJS",
-        "target": "ESNext",
+        "target": "ES2020",
         // "allowJs": true,
         "moduleResolution": "Node",
         "sourceMap": true,
@@ -13,7 +13,10 @@
         "incremental": true,
         "outDir": "./bin"
     },
-    "include": [
-        "src/ts/"
-, "src/ts/native.ts"   ]
+    // "include": [
+    //     "src/ts/"
+    // ],
+    "files": [
+        "src/ts/native.ts"
+    ]
 }

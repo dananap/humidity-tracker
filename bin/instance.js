@@ -7,10 +7,6 @@ require("dotenv/config");
 const os_1 = __importDefault(require("os"));
 const fs_1 = __importDefault(require("fs"));
 class Instance {
-    id;
-    room;
-    hostname;
-    type;
     constructor() {
         this.id = fs_1.default.readFileSync('/etc/machine-id', 'utf8').trim();
         this.room = process.env['ROOM'];

@@ -15,9 +15,6 @@ const hmac_auth_express_1 = require("hmac-auth-express");
 const execFile = (0, util_1.promisify)(require('child_process').execFile);
 const instance = new instance_1.default();
 class Data {
-    temperature;
-    humidity;
-    time;
     constructor(input) {
         lodash_1.default.assign(this, lodash_1.default.create(Data.prototype, JSON.parse(input)), { time: new Date() });
     }
@@ -29,7 +26,6 @@ class Reader {
     }
 }
 class Transmitter {
-    client;
     constructor() {
         this.client = axios_1.default.create(config_1.default.get('api'));
     }
