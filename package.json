@@ -19,13 +19,18 @@
     "@types/mongodb": "^4.0.7",
     "@types/winston": "^2.4.4",
     "axios": "^0.26.1",
+    "coffee-script": "^1.12.7",
     "config": "^3.3.7",
+    "dht": "^0.0.3",
     "dotenv": "^16.0.0",
     "hmac-auth-express": "^8.3.2",
+    "i2c": "^0.2.5",
     "i2c-bus": "^5.2.2",
     "ioredis": "^4.28.5",
     "lodash": "^4.17.21",
     "mongodb": "^4.4.1",
+    "node-dht-sensor": "^0.4.3",
+    "pigpio-dht": "^1.1.1",
     "winston": "^3.6.0"
   },
   "devDependencies": {
