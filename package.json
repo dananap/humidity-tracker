@@ -14,36 +14,23 @@
   "author": "daniel@dpulm.online",
   "license": "MIT",
   "dependencies": {
-    "@types/axios": "^0.14.0",
     "@types/i2c-bus": "^5.1.0",
-    "@types/mongodb": "^4.0.7",
-    "@types/winston": "^2.4.4",
     "axios": "^0.26.1",
-    "coffee-script": "^1.12.7",
+    "coffeescript": "^2.7.0",
     "config": "^3.3.7",
-    "dht": "^0.0.3",
     "dotenv": "^16.0.0",
-    "hmac-auth-express": "^8.3.2",
     "i2c": "^0.2.5",
-    "i2c-bus": "^5.2.2",
     "ioredis": "^4.28.5",
     "lodash": "^4.17.21",
-    "mongodb": "^4.4.1",
     "nanoid": "^4.0.0",
-    "node-dht-sensor": "^0.4.3",
-    "node-redis": "^0.1.7",
-    "pigpio-dht": "^1.1.1",
     "random": "^3.0.6",
     "winston": "^3.6.0"
   },
   "devDependencies": {
     "@types/config": "^0.0.41",
-    "@types/dotenv": "^8.2.0",
     "@types/ioredis": "^4.28.10",
     "@types/lodash": "^4.14.179",
-    "@types/nanoid": "^3.0.0",
     "@types/node": "^17.0.21",
-    "@types/random": "^3.0.1",
     "typescript": "^4.9.0-dev.20220927"
   }
 }
