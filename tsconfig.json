@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "./dist/",
-        "noImplicitAny": false,
+        // "noImplicitAny": false,
         "module": "CommonJS",
         "target": "ES2020",
         // "allowJs": true,
@@ -11,6 +10,13 @@
         "esModuleInterop": true,
         "resolveJsonModule": true,
         // "checkJs": true
-        "incremental": true
-    }
+        "incremental": true,
+        "outDir": "./bin"
+    },
+    // "include": [
+    //     "src/ts/"
+    // ],
+    "files": [
+        "src/ts/native.ts"
+    ]
 }

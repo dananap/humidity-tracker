@@ -1,10 +1,11 @@
 {
   "name": "humidity-tracker",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -13,12 +14,23 @@
   "author": "daniel@dpulm.online",
   "license": "MIT",
   "dependencies": {
-    "i2c-bus": "^5.2.2",
+    "@types/i2c-bus": "^5.1.0",
+    "axios": "^0.26.1",
+    "coffeescript": "^2.7.0",
+    "config": "^3.3.7",
+    "dotenv": "^16.0.0",
+    "i2c": "^0.2.5",
+    "ioredis": "^4.28.5",
+    "lodash": "^4.17.21",
+    "nanoid": "^4.0.0",
+    "random": "^3.0.6",
     "winston": "^3.6.0"
   },
   "devDependencies": {
-    "@types/i2c-bus": "^5.1.0",
-    "@types/winston": "^2.4.4",
-    "typescript": "^4.5.5"
+    "@types/config": "^0.0.41",
+    "@types/ioredis": "^4.28.10",
+    "@types/lodash": "^4.14.179",
+    "@types/node": "^17.0.21",
+    "typescript": "^4.9.0-dev.20220927"
   }
 }

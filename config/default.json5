@@ -1,0 +1,16 @@
+{
+    web: {
+        hmac: {
+            secret: '132916606c7d75b13f5e0ce32f07a2d8'
+        }
+    },
+    api: {
+        baseURL: 'https://bot.dflyboy.me',
+        method: 'POST',
+        responseType: 'json',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+    }
+}
